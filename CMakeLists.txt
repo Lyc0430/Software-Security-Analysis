@@ -116,9 +116,9 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
 endif()
 
-# Assert if CMAKE_BUILD_TYPE is Debug but SVF_BUILD_TYPE is Release
+# Warning if CMAKE_BUILD_TYPE is Debug but SVF_BUILD_TYPE is Release
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND SVF_BUILD_TYPE STREQUAL "Release")
-    message(FATAL_ERROR "CMAKE_BUILD_TYPE=Debug but SVF_BUILD_TYPE=Release is not allowed!")
+    message(WARNING "CMAKE_BUILD_TYPE=Debug but SVF_BUILD_TYPE=Release is not recommended.")
 endif()
 
 # Check if SVF is found and handle importing with modern CMake methods or legacy methods
