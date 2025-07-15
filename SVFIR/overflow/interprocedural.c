@@ -4,11 +4,13 @@
 #define BUFFER_SIZE 10
 void handle_client_request(char *input,
                            int index) {
-	int buffer[BUFFER_SIZE] = { 0 };
-	if (index >= 0)
-		buffer[index] = input[index];
-	else
-		printf("ERR: Array index is negative\n");
+        int buffer[BUFFER_SIZE] = { 0 };
+        if (index >= 0 && index < BUFFER_SIZE)
+                buffer[index] = input[index];
+        else if (index < 0)
+                printf("ERR: Array index is negative\n");
+        else
+                printf("ERR: Array index out of bounds\n");
 }
 void process_socket_data(char *input,
                          int index) {
