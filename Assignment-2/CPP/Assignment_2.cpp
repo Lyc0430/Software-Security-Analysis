@@ -43,25 +43,23 @@ void SSE::reachability(const ICFGEdge* curEdge, const ICFGNode* snk) {
 
 /// TODO: collect each path once this method is called during reachability analysis, and
 /// Collect each program path from the entry to each assertion of the program. In this function,
-/// you will need (1) add each path into the paths set, (2) call translatePath to convert each path into Z3 expressions.
-/// Note that translatePath returns true if the path is feasible, false if the path is infeasible. (3) If a path is feasible,
-/// you will need to call assertchecking to verify the assertion (which is the last ICFGNode of this path).
+/// you will need (1) add each path into the paths set; (2) call translatePath to convert each path into Z3 expressions.
+/// Note that translatePath returns true if the path is feasible, false if the path is infeasible; (3) If a path is feasible,
+/// you will need to call assertchecking to verify the assertion (which is the last ICFGNode of this path); (4) reset z3 solver.
 void SSE::collectAndTranslatePath() {
 	/// TODO: your code starts from here
 }
 
 /// TODO: Implement handling of function calls
-/// Return true means a feasible path, false otherwise
 void SSE::handleCall(const CallCFGEdge* calledge) {
 	/// TODO: your code starts from here
-	return;
+
 }
 
 /// TODO: Implement handling of function returns
-/// Return true means a feasible path, false otherwise
 void SSE::handleRet(const RetCFGEdge* retEdge) {
 	/// TODO: your code starts from here
-	return;
+
 }
 
 /// TODO: Implement handling of branch statements inside a function
@@ -71,7 +69,7 @@ void SSE::handleRet(const RetCFGEdge* retEdge) {
 ///       	     1	/    \  0
 ///       	  ICFGNode2   ICFGNode3
 /// edge->getCondition() returns the branch condition variable (%cmp) of type SVFValue* (for if/else) or a numeric condition variable (for switch).
-/// Given the condition variable, you could obtain the SVFVar ID via "svfir->getValueNode(edge->getCondition())""
+/// Given the condition variable, you could obtain the SVFVar ID via "edge->getCondition()->getId()"
 /// edge->getCondition() returns nullptr if this IntraCFGEdge is not a branch.
 /// edge->getSuccessorCondValue() returns the actual condition value (1/0 for if/else) when this branch/IntraCFGEdge is executed. For example, the successorCondValue is 1 on the edge from ICFGNode1 to ICFGNode2, and 0 on the edge from ICFGNode1 to ICFGNode3
 bool SSE::handleBranch(const IntraCFGEdge* edge) {
